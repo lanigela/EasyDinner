@@ -165,22 +165,27 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2vC-up-O1U" kind="show" id="Pwv-bP-ZZO"/>
+                                    <action selector="ReserveForSeat:" destination="uYK-zM-Y9k" eventType="touchUpInside" id="dIW-BY-EKE"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="TextFieldName" destination="5EK-us-oma" id="GVT-9x-haC"/>
+                        <outlet property="TextFieldPhone" destination="ylF-uJ-MiI" id="NDf-mS-SRd"/>
+                        <segue destination="2vC-up-O1U" kind="show" identifier="ReserveSegue" id="kWj-Vd-4gq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nyV-xb-G0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1105" y="148"/>
         </scene>
-        <!--View Controller-->
+        <!--Client Confirm Reserve View Controller-->
         <scene sceneID="AGy-eV-Pzb">
             <objects>
-                <viewController id="2vC-up-O1U" sceneMemberID="viewController">
+                <viewController id="2vC-up-O1U" customClass="ClientConfirmReserveViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aKg-za-w0n"/>
                         <viewControllerLayoutGuide type="bottom" id="2by-Ij-XdO"/>

@@ -7,6 +7,7 @@
 //
 
 #import "ClientWalkInViewController.h"
+#import "Parse/Parse.h"
 
 @implementation ClientWalkInViewController
 

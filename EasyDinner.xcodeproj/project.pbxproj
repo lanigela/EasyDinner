@@ -30,6 +30,7 @@
 		70DA118219DB5C7300CBC210 /* ClientScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA118119DB5C7300CBC210 /* ClientScanQRCodeViewController.m */; };
 		70DA118419DB609A00CBC210 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70DA118319DB609A00CBC210 /* AVFoundation.framework */; };
 		70DA118719DB69A100CBC210 /* ClientWalkInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA118619DB69A100CBC210 /* ClientWalkInViewController.m */; };
+		70DA118A19DBA48400CBC210 /* ClientConfirmReserveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA118919DBA48400CBC210 /* ClientConfirmReserveViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		70DA118319DB609A00CBC210 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		70DA118519DB69A100CBC210 /* ClientWalkInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientWalkInViewController.h; sourceTree = "<group>"; };
 		70DA118619DB69A100CBC210 /* ClientWalkInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientWalkInViewController.m; sourceTree = "<group>"; };
+		70DA118819DBA48400CBC210 /* ClientConfirmReserveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientConfirmReserveViewController.h; sourceTree = "<group>"; };
+		70DA118919DBA48400CBC210 /* ClientConfirmReserveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientConfirmReserveViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +114,6 @@
 		704343B319DA0FBC0049B5AA = {
 			isa = PBXGroup;
 			children = (
-				70DA118319DB609A00CBC210 /* AVFoundation.framework */,
 				704343BE19DA0FBC0049B5AA /* EasyDinner */,
 				704343D819DA0FBC0049B5AA /* EasyDinnerTests */,
 				704343BD19DA0FBC0049B5AA /* Products */,
@@ -139,13 +141,15 @@
 				7043440319DA17630049B5AA /* ClientResearveViewController.m */,
 				7043440519DA226A0049B5AA /* ClientNavigationController.h */,
 				7043440619DA226A0049B5AA /* ClientNavigationController.m */,
-				704343CC19DA0FBC0049B5AA /* Images.xcassets */,
-				704343CE19DA0FBC0049B5AA /* LaunchScreen.xib */,
-				704343BF19DA0FBC0049B5AA /* Supporting Files */,
 				70DA118019DB5C7300CBC210 /* ClientScanQRCodeViewController.h */,
 				70DA118119DB5C7300CBC210 /* ClientScanQRCodeViewController.m */,
 				70DA118519DB69A100CBC210 /* ClientWalkInViewController.h */,
 				70DA118619DB69A100CBC210 /* ClientWalkInViewController.m */,
+				704343CC19DA0FBC0049B5AA /* Images.xcassets */,
+				704343CE19DA0FBC0049B5AA /* LaunchScreen.xib */,
+				704343BF19DA0FBC0049B5AA /* Supporting Files */,
+				70DA118819DBA48400CBC210 /* ClientConfirmReserveViewController.h */,
+				70DA118919DBA48400CBC210 /* ClientConfirmReserveViewController.m */,
 			);
 			path = EasyDinner;
 			sourceTree = "<group>";
@@ -180,6 +184,7 @@
 		704343E519DA115B0049B5AA /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				70DA118319DB609A00CBC210 /* AVFoundation.framework */,
 				704343FA19DA11E30049B5AA /* SystemConfiguration.framework */,
 				704343F819DA11DA0049B5AA /* StoreKit.framework */,
 				704343F619DA11D30049B5AA /* Security.framework */,
@@ -303,6 +308,7 @@
 				7043440119DA17200049B5AA /* ClientMainViewController.m in Sources */,
 				704343C519DA0FBC0049B5AA /* AppDelegate.m in Sources */,
 				704343C219DA0FBC0049B5AA /* main.m in Sources */,
+				70DA118A19DBA48400CBC210 /* ClientConfirmReserveViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +436,7 @@
 					"$(PROJECT_DIR)/EasyDinner",
 				);
 				INFOPLIST_FILE = EasyDinner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -446,7 +452,7 @@
 					"$(PROJECT_DIR)/EasyDinner",
 				);
 				INFOPLIST_FILE = EasyDinner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
