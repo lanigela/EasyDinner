@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Parse/Parse.h"
 
-@interface ClientResearveViewController : UIViewController
+@interface ClientResearveViewController : UIViewController<UITextFieldDelegate>
+
+@property (strong, nonatomic) PFObject* ReserveInfo;
 
 @end
