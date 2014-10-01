@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Parse/Parse.h"
 
 @interface AppDelegate ()
 
@@ -17,9 +18,108 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [Parse setApplicationId:@"xNi30MIgDVvBFxLmaXEXA36grznsUF7ZFuDpLyyG"
+                  clientKey:@"2hYu7h4GttZNrztHQLQNU0c6y8n9XkOyEIpha32g"];
+    //
+    // If you are using Facebook, uncomment and add your FacebookAppID to your bundle's plist as
+    // described here: https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/
+    // [PFFacebookUtils initializeFacebook];
+    // ****************************************************************************
+    
+    [PFUser enableAutomaticUser];
+    
+    PFACL *defaultACL = [PFACL ACL];
+    
+    // If you would like all objects to be private by default, remove this line.
+    [defaultACL setPublicReadAccess:YES];
+    
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
+    // Override point for customization after application launch.
+    
+    [self.window makeKeyAndVisible];
+    
+    if (application.applicationState != UIApplicationStateBackground) {
+        // Track an app open here if we launch with a push, unless
+        // "content_available" was used to trigger a background push (introduced in iOS 7).
+        // In that case, we skip tracking here to avoid double counting the app-open.
+        BOOL preBackgroundPush = ![application respondsToSelector:@selector(backgroundRefreshStatus)];
+        BOOL oldPushHandlerOnly = ![self respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)];
+        BOOL noPushPayload = ![launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+            [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+        }
+    }
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    } else
+#endif
+    {
+        /*[application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeAlert |
+                                                         UIRemoteNotificationTypeSound)];*/
+        NSLog(@"Old ios device detected!");
+    }
+        
+    
     return YES;
 }
+/*
+///////////////////////////////////////////////////////////
+// Uncomment this method if you are using Facebook
+///////////////////////////////////////////////////////////
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url];
+}*/
+
+
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+    [PFPush storeDeviceToken:newDeviceToken];
+    [PFPush subscribeToChannelInBackground:@"" target:self selector:@selector(subscribeFinished:error:)];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    if (error.code == 3010) {
+        NSLog(@"Push notifications are not supported in the iOS Simulator.");
+    } else {
+        // show some alert or otherwise handle the failure to register.
+        NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
+    }
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+    
+    if (application.applicationState == UIApplicationStateInactive) {
+        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+    }
+    NSLog(@"Function1 was called.");
+}
+
+///////////////////////////////////////////////////////////
+// Uncomment this method if you want to use Push Notifications with Background App Refresh
+///////////////////////////////////////////////////////////
+
+ - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+ if (application.applicationState == UIApplicationStateInactive) {
+ [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+ }
+     NSLog(@"Function 2 was called");
+ }
+ 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -42,4 +142,12 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+- (void)subscribeFinished:(NSNumber *)result error:(NSError *)error {
+    if ([result boolValue]) {
+        NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
+    } else {
+        NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
+    }
+}
 @end
