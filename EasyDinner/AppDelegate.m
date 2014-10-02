@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ClientNavigationController.h"
 
 
 @interface AppDelegate ()
@@ -125,14 +126,18 @@
         [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
         fetchResult = UIBackgroundFetchResultNewData;
     }
-    if (completionHandler) {
-        completionHandler(fetchResult);
-    }
     NSDictionary *aps = [userInfo valueForKey:@"aps"];
     NSString *content = [aps valueForKey:@"alert"];
     if ([content isEqualToString:@"Your seat is ready now!"]) {
         [self.window.rootViewController.navigationController popToRootViewControllerAnimated:YES];
     }
+
+    if (completionHandler) {
+        completionHandler(fetchResult);
+    }
+    ClientNavigationController* cnc =  (ClientNavigationController*)self.window.rootViewController;
+    [cnc popToRootViewControllerAnimated:YES];
+
 }
 
 - (void)subscribeFinished:(NSNumber *)result error:(NSError *)error {

@@ -8,6 +8,7 @@
 
 #import "ClientWalkInViewController.h"
 #import "ClientConfirmWalkInViewController.h"
+#import "AppDelegate.h"
 
 @interface ClientWalkInViewController()
 @property (weak, nonatomic) IBOutlet UITextField *WalkInInfoPhone;
@@ -70,6 +71,8 @@
     self.WalkInInfo[@"name"] = self.WalkInInfoName.text;
     self.WalkInInfo[@"phone"] = self.WalkInInfoPhone.text;
     self.WalkInInfo[@"type"] = @"walkin";
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    self.WalkInInfo[@"deviceToken"] = app.installation.deviceToken;
     PFACL *groupACL = [PFACL ACL];
     [groupACL setPublicWriteAccess:YES];
     [groupACL setPublicReadAccess:YES];
