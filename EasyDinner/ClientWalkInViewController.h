@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Parse/Parse.h"
 
-@interface ClientWalkInViewController : UIViewController
+
+
+@interface ClientWalkInViewController : UIViewController<UITextFieldDelegate>
+
+@property (strong, nonatomic) PFObject * WalkInInfo;
 
 @end

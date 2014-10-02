@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "Parse/Parse.h"
+
 
 @interface AppDelegate ()
 
@@ -26,7 +26,7 @@
     // [PFFacebookUtils initializeFacebook];
     // ****************************************************************************
     
-    [PFUser enableAutomaticUser];
+    //[PFUser enableAutomaticUser];
     
     PFACL *defaultACL = [PFACL ACL];
     
@@ -86,9 +86,13 @@
 
 
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
-    [PFPush storeDeviceToken:newDeviceToken];
-    [PFPush subscribeToChannelInBackground:@"" target:self selector:@selector(subscribeFinished:error:)];
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current Installation and save it to Parse.
+    self.installation = [PFInstallation currentInstallation];
+    [self.installation setDeviceTokenFromData:deviceToken];
+    [self.installation setObject:@"NO" forKey:@"isRestaurant"];
+    [self.installation saveInBackground];
+
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -100,25 +104,44 @@
     }
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+/*- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
     
     if (application.applicationState == UIApplicationStateInactive) {
         [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
     }
     NSLog(@"Function1 was called.");
-}
+}*/
 
 ///////////////////////////////////////////////////////////
 // Uncomment this method if you want to use Push Notifications with Background App Refresh
 ///////////////////////////////////////////////////////////
 
- - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
- if (application.applicationState == UIApplicationStateInactive) {
- [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
- }
-     NSLog(@"Function 2 was called");
- }
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [PFPush handlePush:userInfo];
+    UIBackgroundFetchResult fetchResult = UIBackgroundFetchResultFailed;
+    if (application.applicationState == UIApplicationStateInactive) {
+        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+        fetchResult = UIBackgroundFetchResultNewData;
+    }
+    if (completionHandler) {
+        completionHandler(fetchResult);
+    }
+    NSDictionary *aps = [userInfo valueForKey:@"aps"];
+    NSString *content = [aps valueForKey:@"alert"];
+    if ([content isEqualToString:@"Your seat is ready now!"]) {
+        [self.window.rootViewController.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
+- (void)subscribeFinished:(NSNumber *)result error:(NSError *)error {
+    if ([result boolValue]) {
+        NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
+    } else {
+        NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
+    }
+}
  
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -143,11 +166,5 @@
 }
 
 
-- (void)subscribeFinished:(NSNumber *)result error:(NSError *)error {
-    if ([result boolValue]) {
-        NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
-    } else {
-        NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
-    }
-}
+
 @end

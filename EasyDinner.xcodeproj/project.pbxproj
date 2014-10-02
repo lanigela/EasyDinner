@@ -31,6 +31,7 @@
 		70DA118419DB609A00CBC210 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70DA118319DB609A00CBC210 /* AVFoundation.framework */; };
 		70DA118719DB69A100CBC210 /* ClientWalkInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA118619DB69A100CBC210 /* ClientWalkInViewController.m */; };
 		70DA118A19DBA48400CBC210 /* ClientConfirmReserveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA118919DBA48400CBC210 /* ClientConfirmReserveViewController.m */; };
+		70DA118D19DBBD7400CBC210 /* ClientConfirmWalkInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA118C19DBBD7400CBC210 /* ClientConfirmWalkInViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		70DA118619DB69A100CBC210 /* ClientWalkInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientWalkInViewController.m; sourceTree = "<group>"; };
 		70DA118819DBA48400CBC210 /* ClientConfirmReserveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientConfirmReserveViewController.h; sourceTree = "<group>"; };
 		70DA118919DBA48400CBC210 /* ClientConfirmReserveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientConfirmReserveViewController.m; sourceTree = "<group>"; };
+		70DA118B19DBBD7400CBC210 /* ClientConfirmWalkInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientConfirmWalkInViewController.h; sourceTree = "<group>"; };
+		70DA118C19DBBD7400CBC210 /* ClientConfirmWalkInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientConfirmWalkInViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 				704343BF19DA0FBC0049B5AA /* Supporting Files */,
 				70DA118819DBA48400CBC210 /* ClientConfirmReserveViewController.h */,
 				70DA118919DBA48400CBC210 /* ClientConfirmReserveViewController.m */,
+				70DA118B19DBBD7400CBC210 /* ClientConfirmWalkInViewController.h */,
+				70DA118C19DBBD7400CBC210 /* ClientConfirmWalkInViewController.m */,
 			);
 			path = EasyDinner;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DA118219DB5C7300CBC210 /* ClientScanQRCodeViewController.m in Sources */,
+				70DA118D19DBBD7400CBC210 /* ClientConfirmWalkInViewController.m in Sources */,
 				7043440719DA226A0049B5AA /* ClientNavigationController.m in Sources */,
 				7043440419DA17630049B5AA /* ClientResearveViewController.m in Sources */,
 				70DA118719DB69A100CBC210 /* ClientWalkInViewController.m in Sources */,

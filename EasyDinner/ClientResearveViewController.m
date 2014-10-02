@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 DreamChou. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "ClientResearveViewController.h"
 #import "ClientConfirmReserveViewController.h"
 
@@ -22,7 +23,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:YES];
     
     self.TextFieldName.delegate = self;
     self.TextFieldPhone.delegate = self;
@@ -68,10 +69,18 @@
     }
 }
 
+
 - (IBAction)ReserveForSeat:(UIButton *)sender {
-    self.ReserveInfo = [PFObject objectWithClassName:@"ReserveInfo"];
+    self.ReserveInfo = [PFObject objectWithClassName:@"LineInfo"];
     self.ReserveInfo[@"name"] = self.TextFieldName.text;
     self.ReserveInfo[@"phone"] = self.TextFieldPhone.text;
+    self.ReserveInfo[@"type"] = @"reserve";
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    self.ReserveInfo[@"deviceToken"] = app.installation.deviceToken;
+    PFACL *groupACL = [PFACL ACL];
+    [groupACL setPublicWriteAccess:YES];
+    [groupACL setPublicReadAccess:YES];
+    self.ReserveInfo.ACL = groupACL;
     [self.ReserveInfo saveInBackground];
     [self performSegueWithIdentifier:@"ReserveSegue" sender:self];
 }

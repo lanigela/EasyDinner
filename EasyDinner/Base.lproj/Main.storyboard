@@ -114,15 +114,76 @@
                                 <state key="normal" title="Get In Line!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="GetInLine:" destination="E0Q-qN-WAi" eventType="touchUpInside" id="CAa-BW-Ajn"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="WalkInInfoName" destination="142-5H-XsR" id="lsG-1N-Ibc"/>
+                        <outlet property="WalkInInfoPhone" destination="HPG-ic-rPN" id="9XA-9p-xpw"/>
+                        <segue destination="Dek-ns-LKz" kind="show" identifier="WalkInSegue" id="tga-6I-zIz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYX-zM-YA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1151" y="880"/>
+            <point key="canvasLocation" x="1105" y="880"/>
+        </scene>
+        <!--Client Confirm Walk In View Controller-->
+        <scene sceneID="cZ4-Cy-8u1">
+            <objects>
+                <viewController id="Dek-ns-LKz" customClass="ClientConfirmWalkInViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z1q-jK-V9K"/>
+                        <viewControllerLayoutGuide type="bottom" id="UiR-YH-Y0w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZFL-0Z-86I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFW-fX-bZW">
+                                <rect key="frame" x="75" y="99" width="170" height="95"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="You are No.   in the line">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="25" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="We will notice you soon!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jn3-DW-1ca">
+                                <rect key="frame" x="68" y="226" width="185" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6J9-uT-aMg">
+                                <rect key="frame" x="68" y="351" width="68" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="CancelWalkIn:" destination="Dek-ns-LKz" eventType="touchUpInside" id="Ltv-Lc-2OU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="LineInfo" destination="dFW-fX-bZW" id="k0e-Bu-1xC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Gt-IY-mf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1552" y="880"/>
         </scene>
         <!--Client Researve View Controller-->
         <scene sceneID="t9V-7c-2d6">
@@ -222,6 +283,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="ReserveSucceedMessage" destination="jBF-jN-B6Y" id="JQc-6D-oVO"/>
                         <segue destination="flL-9E-ZCa" kind="show" identifier="ReserveCanceled" id="HKq-aS-dl5"/>
                     </connections>
                 </viewController>

@@ -8,7 +8,18 @@
 
 #import "ClientConfirmReserveViewController.h"
 
+@interface ClientConfirmReserveViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *ReserveSucceedMessage;
+
+@end
+
 @implementation ClientConfirmReserveViewController
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+}
 
 - (IBAction)CancelReserve:(id)sender {
     [self.ReserveInfo deleteInBackground];
