@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClientProcessingViewController.h"
 
 @interface ClientNavigationController : UINavigationController
+
+@property (strong, nonatomic)ClientProcessingViewController *cpvc;
+
+-(void) startProcessing;
+
+-(void) endProcessing;
 
 @end

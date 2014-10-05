@@ -64,9 +64,9 @@
     } else
 #endif
     {
-        /*[application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                          UIRemoteNotificationTypeAlert |
-                                                         UIRemoteNotificationTypeSound)];*/
+                                                         UIRemoteNotificationTypeSound)];
         NSLog(@"Old ios device detected!");
     }
         

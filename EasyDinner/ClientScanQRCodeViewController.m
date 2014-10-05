@@ -17,12 +17,20 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self SetupCamera];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
     [self.session startRunning];
+    
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [self.session stopRunning];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -42,9 +50,25 @@
     if ([metadataObjects count] >0) {
         AVMetadataMachineReadableCodeObject *metadataObject = [metadataObjects objectAtIndex:0];
         stringValue = metadataObject.stringValue;
+        
     }
     
     [_session stopRunning];
+    
+    [PFCloud callFunctionInBackground:@"QRCodeMatching" withParameters:@{@"QRCODE":stringValue} block:^(id object, NSError *error) {
+        ClientNavigationController* cnc = (ClientNavigationController*)self.navigationController;
+        [cnc endProcessing];
+        [self performSegueWithIdentifier:@"QRCodeScannedSegue" sender:self];
+    }];
+    
+    
+    //[self transitionFromViewController:self.cameraVC toViewController:self.processingVC duration:1 options:UIViewAnimationOptionTransitionFlipFromTop animations:^{} completion:^(BOOL finished) {}];
+    //[self.processingVC didMoveToParentViewController:self];
+    
+        //[self.navigationController.view.layer addSublayer:self.wlayer];
+    // change UI while verifying QR code
+    ClientNavigationController* cnc = (ClientNavigationController*)self.navigationController;
+    [cnc startProcessing];
     
     [self dismissViewControllerAnimated:YES completion:^{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
@@ -55,7 +79,8 @@
         [alert show];
     }];
     NSLog(@"QRCode Scanned!");
-    [self performSegueWithIdentifier:@"QRCodeScannedSegue" sender:self];
+    
+    
 }
 
 -(void)SetupCamera

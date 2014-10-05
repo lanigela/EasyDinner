@@ -9,5 +9,34 @@
 #import "ClientNavigationController.h"
 
 @implementation ClientNavigationController
+@synthesize cpvc = _cpvc;
+
+
+-(ClientProcessingViewController*)cpvc
+{
+    if (!_cpvc) {
+        _cpvc = [[ClientProcessingViewController alloc] init];
+        _cpvc.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }
+    return _cpvc;
+}
+-(void) viewDidLoad
+{
+    [super viewDidLoad];
+}
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+-(void) startProcessing
+{
+    [self.view addSubview:self.cpvc.view];
+    [self.cpvc viewWillAppear:YES];
+}
+-(void) endProcessing
+{
+    [self.cpvc.view removeFromSuperview];
+    [self.cpvc viewWillDisappear:YES];
+}
 
 @end

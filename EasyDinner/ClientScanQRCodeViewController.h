@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "ClientProcessingViewController.h"
+#import "ClientNavigationController.h"
 
 @interface ClientScanQRCodeViewController : UIViewController<AVCaptureMetadataOutputObjectsDelegate>
 
@@ -16,6 +18,9 @@
 @property AVCaptureMetadataOutput *output;
 @property AVCaptureSession *session;
 @property AVCaptureVideoPreviewLayer *preview;
+
+
+
 
 -(void)SetupCamera;
 

@@ -68,9 +68,12 @@
 
 - (IBAction)GetInLine:(id)sender {
     self.WalkInInfo = [PFObject objectWithClassName:@"LineInfo"];
+    NSNumber *t = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
+    self.WalkInInfo[@"registertime"] = t;
     self.WalkInInfo[@"name"] = self.WalkInInfoName.text;
     self.WalkInInfo[@"phone"] = self.WalkInInfoPhone.text;
     self.WalkInInfo[@"type"] = @"walkin";
+    self.WalkInInfo[@"registertime"] = t;
     AppDelegate *app = [UIApplication sharedApplication].delegate;
     self.WalkInInfo[@"deviceToken"] = app.installation.deviceToken;
     PFACL *groupACL = [PFACL ACL];

@@ -7,6 +7,7 @@
 //
 
 #import "ClientConfirmWalkInViewController.h"
+#import "AppDelegate.h"
 
 
 @interface ClientConfirmWalkInViewController()
@@ -32,13 +33,17 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    [PFCloud callFunctionInBackground:@"MyRank" withParameters:@{@"deviceToken":app.installation.deviceToken} block:^(NSString* object, NSError *error) {
+        self.LineInfo.text = [NSString stringWithFormat:@"You are No.%@\n in the line!",object];}];
+    /*PFQuery * query = [PFQuery queryWithClassName:@"LineInfo"];
+    [query whereKey:@"deviceToken" equalTo:app.installation.deviceToken];
+    NSArray* results = [query findObjects];
+    for(PFObject *obj in results){
+        NSLog(obj.objectId);
+    }*/
     
-    PFQuery *query = [PFQuery queryWithClassName:@"LineInfo"];
-    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
-        if (!error) {
-            self.LineInfo.text = [NSString stringWithFormat:@"You are No.%d\nin the line", number+1];
-        }
-    }];
 }
 
 @end

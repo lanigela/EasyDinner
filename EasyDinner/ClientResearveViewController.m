@@ -71,7 +71,10 @@
 
 
 - (IBAction)ReserveForSeat:(UIButton *)sender {
+    
     self.ReserveInfo = [PFObject objectWithClassName:@"LineInfo"];
+    NSNumber *t = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
+    self.ReserveInfo[@"registertime"] = t;
     self.ReserveInfo[@"name"] = self.TextFieldName.text;
     self.ReserveInfo[@"phone"] = self.TextFieldPhone.text;
     self.ReserveInfo[@"type"] = @"reserve";
