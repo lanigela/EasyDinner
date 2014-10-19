@@ -20,6 +20,21 @@
     }
     return _cpvc;
 }
+-(void) deviceTokenReady
+{
+    for (NSObject* obj in self.viewControllers) {
+        if ([obj isKindOfClass:[ClientMainViewController class]]) {
+            ClientMainViewController* cmvc = (ClientMainViewController*)obj;
+            [cmvc tokenReady];
+        }
+    }
+}
+
+-(void) QRCodeNotMatch
+{
+    
+}
+
 -(void) viewDidLoad
 {
     [super viewDidLoad];

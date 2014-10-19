@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "ClientNavigationController.h"
 
-@class ClientNavigationController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

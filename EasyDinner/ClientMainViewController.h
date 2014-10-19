@@ -10,4 +10,6 @@
 
 @interface ClientMainViewController : UIViewController
 
+-(void) tokenReady;
+
 @end

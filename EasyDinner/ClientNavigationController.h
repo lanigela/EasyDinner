@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ClientProcessingViewController.h"
+#import "ClientMainViewController.h"
 
 @interface ClientNavigationController : UINavigationController
 
@@ -16,5 +17,9 @@
 -(void) startProcessing;
 
 -(void) endProcessing;
+
+-(void) deviceTokenReady;
+
+-(void) QRCodeNotMatch;
 
 @end

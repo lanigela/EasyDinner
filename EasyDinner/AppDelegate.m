@@ -93,7 +93,9 @@
     [self.installation setDeviceTokenFromData:deviceToken];
     [self.installation setObject:@"NO" forKey:@"isRestaurant"];
     [self.installation saveInBackground];
-
+    
+    ClientNavigationController* cnc = (ClientNavigationController*)self.window.rootViewController;
+    [cnc deviceTokenReady];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

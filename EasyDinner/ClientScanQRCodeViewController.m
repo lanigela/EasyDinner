@@ -55,10 +55,24 @@
     
     [_session stopRunning];
     
+    ClientNavigationController* cnc = (ClientNavigationController*)self.navigationController;
+    [cnc startProcessing];
+    
     [PFCloud callFunctionInBackground:@"QRCodeMatching" withParameters:@{@"QRCODE":stringValue} block:^(id object, NSError *error) {
         ClientNavigationController* cnc = (ClientNavigationController*)self.navigationController;
         [cnc endProcessing];
-        [self performSegueWithIdentifier:@"QRCodeScannedSegue" sender:self];
+        //[self performSegueWithIdentifier:@"QRCodeScannedSegue" sender:self];
+            
+            if ([object isEqualToString:@"Good to Go"]) {
+                [self performSegueWithIdentifier:@"QRCodeScannedSegue" sender:self];
+            }
+            else {  
+                
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"QRCode not match!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                [_session startRunning];
+            }
+    
     }];
     
     
@@ -67,8 +81,7 @@
     
         //[self.navigationController.view.layer addSublayer:self.wlayer];
     // change UI while verifying QR code
-    ClientNavigationController* cnc = (ClientNavigationController*)self.navigationController;
-    [cnc startProcessing];
+    
     
     [self dismissViewControllerAnimated:YES completion:^{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil

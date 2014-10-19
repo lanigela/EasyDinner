@@ -19,8 +19,14 @@
 @implementation ClientConfirmWalkInViewController
 
 - (IBAction)CancelWalkIn:(id)sender {
-    [self.WalkInInfo deleteInBackground];
-    self.WalkInInfo = nil;
+    //[self.WalkInInfo deleteInBackground];
+    //self.WalkInInfo = nil;
+    AppDelegate* app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    ClientNavigationController* cnc = (ClientNavigationController*)self.navigationController;
+    [cnc startProcessing];
+    [PFCloud callFunctionInBackground:@"CancelReservation" withParameters:@{@"deviceToken":app.installation.deviceToken} block:^(id object, NSError *error) {
+        [cnc endProcessing];
+    }];
     
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"You have left the line!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     

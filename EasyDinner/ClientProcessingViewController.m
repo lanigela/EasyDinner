@@ -12,6 +12,9 @@
 @synthesize processingLabel = _processingLabel;
 @synthesize processingIndicator = _processingIndicator;
 
+
+
+
 -(UILabel*)processingLabel
 {
     if (!_processingLabel){

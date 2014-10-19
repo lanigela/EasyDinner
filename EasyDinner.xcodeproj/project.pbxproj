@@ -151,15 +151,15 @@
 				70DA118119DB5C7300CBC210 /* ClientScanQRCodeViewController.m */,
 				70DA118519DB69A100CBC210 /* ClientWalkInViewController.h */,
 				70DA118619DB69A100CBC210 /* ClientWalkInViewController.m */,
-				704343CC19DA0FBC0049B5AA /* Images.xcassets */,
-				704343CE19DA0FBC0049B5AA /* LaunchScreen.xib */,
-				704343BF19DA0FBC0049B5AA /* Supporting Files */,
 				70DA118819DBA48400CBC210 /* ClientConfirmReserveViewController.h */,
 				70DA118919DBA48400CBC210 /* ClientConfirmReserveViewController.m */,
 				70DA118B19DBBD7400CBC210 /* ClientConfirmWalkInViewController.h */,
 				70DA118C19DBBD7400CBC210 /* ClientConfirmWalkInViewController.m */,
 				7029252C19DF3524006D31DC /* ClientProcessingViewController.h */,
 				7029252D19DF3524006D31DC /* ClientProcessingViewController.m */,
+				704343CC19DA0FBC0049B5AA /* Images.xcassets */,
+				704343CE19DA0FBC0049B5AA /* LaunchScreen.xib */,
+				704343BF19DA0FBC0049B5AA /* Supporting Files */,
 			);
 			path = EasyDinner;
 			sourceTree = "<group>";
@@ -448,7 +448,7 @@
 					"$(PROJECT_DIR)/EasyDinner",
 				);
 				INFOPLIST_FILE = EasyDinner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -464,7 +464,7 @@
 					"$(PROJECT_DIR)/EasyDinner",
 				);
 				INFOPLIST_FILE = EasyDinner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
